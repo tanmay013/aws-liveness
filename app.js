@@ -8,12 +8,16 @@ const { apiRateLimiter } = require("./src/middleware/rateLimiter");
 const { notFoundHandler, errorHandler } = require("./src/utils/errorHandler");
 
 const app = express();
+const isProduction = process.env.NODE_ENV === "production";
+
+if (isProduction) {
+  app.set("trust proxy", 1);
+}
 
 const allowedOrigins = (process.env.FRONTEND_ORIGIN || "")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
-const isProduction = process.env.NODE_ENV === "production";
 
 const defaultDevOrigins = [
   "http://localhost",
