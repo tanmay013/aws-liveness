@@ -56,15 +56,10 @@ const isOriginAllowed = (origin) => {
 
 app.use(helmet());
 app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (isOriginAllowed(origin)) {
-        return callback(null, true);
-      }
-      return callback(null, false);
-    },
-    optionsSuccessStatus: 204
-  })
+  cors(({
+    origin: true, // allow all origins
+    credentials: true
+  }))
 );
 app.use(express.json({ limit: "1mb" }));
 app.use(requestLogger);

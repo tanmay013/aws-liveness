@@ -17,9 +17,4 @@ const HOST = "0.0.0.0";
 
 app.listen(PORT, HOST, () => {
   console.log(`[server] Listening on http://${HOST}:${PORT} (PORT env: ${portEnv ?? "unset → 3000"})`);
-  if (process.env.RAILWAY_PROJECT_ID || process.env.RAILWAY_ENVIRONMENT_NAME) {
-    console.log(
-      "[server] Railway: browser traffic needs a public URL — Service → Settings → Networking → Public networking → Generate domain. /health can be 200 from internal checks before that exists."
-    );
-  }
 });
