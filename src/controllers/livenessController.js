@@ -26,7 +26,16 @@ const getResultHandler = async (req, res, next) => {
   }
 };
 
+const getHello = async (req, res, next) => {
+  try {
+    return res.status(200).json({"result": "Hello World"});
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   createSessionHandler,
-  getResultHandler
+  getResultHandler,
+  getHello
 };
