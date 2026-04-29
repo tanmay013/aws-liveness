@@ -81,7 +81,13 @@ const createSession = async () => {
       );
     }
 
-    const command = new CreateFaceLivenessSessionCommand({});
+    const command = new CreateFaceLivenessSessionCommand({
+      Settings: {
+        ChallengePreferences: [
+          { Type: "FaceMovementChallenge" },
+        ],
+      }
+    });
     const response = await rekognitionClient.send(command);
     return {
       sessionId: response.SessionId
